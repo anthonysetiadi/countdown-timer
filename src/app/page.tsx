@@ -5,7 +5,6 @@ import LargeHeading from '@/components/ui/LargeHeading';
 import Paragraph from '@/components/ui/Paragraph';
 import { Calendar } from '@/components/ui/calendar';
 import { format } from 'date-fns';
-import { DayPicker } from 'react-day-picker';
 import * as React from 'react';
 
 export default function Home() {
