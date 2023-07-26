@@ -5,21 +5,21 @@ import LargeHeading from '@/components/ui/LargeHeading';
 import Paragraph from '@/components/ui/Paragraph';
 import { Calendar } from '@/components/ui/calendar';
 import { format } from 'date-fns';
+import { DayPicker } from 'react-day-picker';
 import * as React from 'react';
 
 export default function Home() {
-	const [date, setDate] = React.useState<Date | undefined>(new Date());
-	const [timerWeeks, setTimerWeeks] = React.useState();
-	const [timerDays, setTimerDays] = React.useState();
-	const [timerHours, setTimerHours] = React.useState();
-	const [timerMinutes, setTimerMinutes] = React.useState();
-	const [timerSeconds, setTimerSeconds] = React.useState();
+	const [date, setDate] = React.useState<Date | any>(new Date());
+	const [timerWeeks, setTimerWeeks] = React.useState<number>(0);
+	const [timerDays, setTimerDays] = React.useState<number>(0);
+	const [timerHours, setTimerHours] = React.useState<number>(0);
+	const [timerMinutes, setTimerMinutes] = React.useState<number>(0);
+	const [timerSeconds, setTimerSeconds] = React.useState<number>(0);
 
-	let interval;
+	let interval: ReturnType<typeof setInterval>;
 
 	const startTimer = () => {
-		const countdownDate = format(new Date(date), 'T');
-		console.log(countdownDate);
+		const countdownDate: any = format(new Date(date), 'T');
 
 		interval = setInterval(() => {
 			const now = new Date().getTime();
@@ -54,8 +54,8 @@ export default function Home() {
 
 	return (
 		<div className='h-screen flex items-center justify-center overflow-x-hidden'>
-			<div className='container columns-2 gap-8 pt-32 max-w-7xl w-full mx-auto h-full'>
-				<div className='h-full gap-6 flex flex-col justify-start lg:justify-center items-center lg:items-start'>
+			<div className='container md:columns-2 gap-8 pt-32 max-w-7xl w-full mx-auto md:h-full'>
+				<div className='h-full gap-6 flex flex-col justify-start lg:justify-center items-center lg:items-start mb-4'>
 					<LargeHeading size='lg' className='three-d text-light-gold light:text-light-gold'>
 						Countdown <br /> Timer.
 					</LargeHeading>
@@ -64,8 +64,11 @@ export default function Home() {
 						Easily keep track of time to your favourite events of text with this free countdown
 						timer.
 					</Paragraph>
+					<Paragraph size='sm' className='max-w-xl lg:text-left'>
+						Select a date to begin your countdown.
+					</Paragraph>
 				</div>
-				<div className='h-full gap-6 flex flex-col items-center justify-center'>
+				<div className='md:h-full gap-6 flex flex-col items-center justify-center'>
 					<Calendar
 						mode='single'
 						selected={date}
